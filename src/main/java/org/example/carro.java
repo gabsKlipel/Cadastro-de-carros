@@ -1,6 +1,5 @@
 package org.example;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class carro {
     String modelo;
@@ -9,7 +8,6 @@ public class carro {
         this.modelo = modelo;
         this.cor = cor;
     }
-    Scanner scanner = new Scanner(System.in);
     int combustivel = 50;
     int velocidade = 0;
     public void ligar(boolean ligar){

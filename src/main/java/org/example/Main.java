@@ -1,31 +1,42 @@
 package org.example;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main{
     public static void main(String[] args){
         Scanner scanner = new Scanner (System.in);
         List<carro> carros = new ArrayList<carro>();
         pessoa marcos = new pessoa("Marcos");
-        System.out.printf("quantos carros %s tem?", marcos.nome);
-        int resposta = scanner.nextInt();
-        while (resposta > 0 ){
-            System.out.println("qual o modelo do carro?: ");
-            String modelo = scanner.next();
-            System.out.println("qual a cor do carro?: ");
-            String cor = scanner.next();
-            carros.add(new carro(modelo, cor));
-            resposta--;
-            if (resposta == 0){
-                System.out.println("carros cadastrados");
-            }
+
+        System.out.println("---inicio das opções---");
+        System.out.println("1- cadastro de carros\n2- escolher carro para dirigir\n3- abastecer");
+        int alt = scanner.nextInt();
+
+        switch (alt){
+            //cadastro de carros
+            case 1:
+                System.out.printf("quantos carros %s tem?", marcos.nome);
+                marcos.quantCarros = scanner.nextInt();
+                while (marcos.quantCarros > 0 ){
+                    System.out.println("qual o modelo do carro?: ");
+                    String modelo = scanner.next();
+                    System.out.println("qual a cor do carro?: ");
+                    String cor = scanner.next();
+                    carros.add(new carro(modelo, cor));
+                    marcos.quantCarros--;
+                    if (marcos.quantCarros == 0){
+                        System.out.println("carros cadastrados");
+                    }
+                }
+            // escolher carro para dirigir
+            case 2:
+                System.out.println("qual carro deseja dirigir?");
+                String escolha = scanner.nextLine();
+                for(int i = 0; i < carros.size(); i++){
+                    if(Objects.equals(carros.get(i).modelo, escolha)){
+                        System.out.println("voce esta dirigindo o carro" + carros.get(i).modelo);
+                    }
+                }
         }
-        System.out.println("qual carro deseja dirigir?: ");
-        String resposta2 = scanner.nextLine();
-        if (Objects.equals(carros.get(0).modelo == resposta2)){
-            System.out.printf("voce esta dirigindo o carro: %s", carros.get(0).modelo);
-        }
+
     }
 }
